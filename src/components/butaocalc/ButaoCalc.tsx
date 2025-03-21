@@ -2,12 +2,21 @@
 interface Props {
   atualizarValor1: (num: number) => void;  // Função para atualizar o valor
   atualizarValor2: (op: string | undefined) => void;  // Função para atualizar a operação
+  calcular: () => void;
+
+  limpar: () => void; // Adicionando a função de limpar
 }
 
-const ButaoCalc: React.FC<Props> = ({ atualizarValor1, atualizarValor2 }) => {
+const ButaoCalc: React.FC<Props> = ({ atualizarValor1, atualizarValor2,calcular,limpar }) => {
 
   return (
-    <div id="butoes" className="w-60 h-40 bg-slate-400 grid-cols-4 grid-rows-4 grid gap-4 " >
+    <div id="butoes" className="w-60 h-40 bg-slate-400 grid-cols-4 grid-rows-5 grid gap-4 " > 
+
+              <div className=" flex justify-center border col-span-2">
+              <button className="w-full cursor-pointer " onClick={()=> limpar()}  >limpar</button></div>
+             
+              <div className=" col-span-2">
+              <button className="w-full cursor-pointer " ></button></div>
         
               <div className=" flex justify-center border">
                 <button className="w-full cursor-pointer " onClick={()=> atualizarValor1(7)}>7</button></div>
@@ -48,10 +57,10 @@ const ButaoCalc: React.FC<Props> = ({ atualizarValor1, atualizarValor2 }) => {
                 <button className="w-full cursor-pointer" onClick={()=> atualizarValor2('/')}>/</button></div>
 
               <div className=" flex justify-center border">
-                <button>=</button></div>
+                <button className="w-full cursor-pointer " onClick={()=>calcular() } >=</button></div>
 
                 <div className=" flex justify-center border col-span-2">
-                <button className="w-full cursor-pointer " onClick={()=> atualizarValor2('+')} >+</button></div>
+                <button className="w-full cursor-pointer bg-green-600" onClick={()=> atualizarValor2('+')} >+</button></div>
                
         
     </div>

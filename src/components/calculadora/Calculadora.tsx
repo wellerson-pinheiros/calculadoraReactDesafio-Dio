@@ -1,18 +1,33 @@
 import { useState } from "react";
 import ButaoCalc from "../butaocalc/ButaoCalc";
-import Display from "../display/Display";
 
-function Calculadora() {
+
+function Calculadora () {
   // estado que armazena o valor clicado pelo usúario
   const [valores, setValores] = useState<number[]>([]);
+  const [valores2, setValores2] = useState<number[]>([]);
+
   const [operacaoarmazenado, setOperacaoArmazenado] = useState<
     string | undefined
   >();
 
+    //const [calcular, setCalcular] = useState (0); 
+
+  const [display, setDisplay] = useState<number | undefined > ();
+
+
+
+
+
+
   // função que cria um novo array com o numeros antigos persistidos no array que vamos receber do filho
   function handleClick(num: number): void {
+    if(operacaoarmazenado === undefined)
     setValores([...valores, num]);
-    console.log(valores)
+   else if (operacaoarmazenado != undefined) {
+    setValores2([...valores2,num])
+   }
+   
   }
 
 
@@ -20,22 +35,69 @@ function Calculadora() {
 
   function handleOperacao(op: string | undefined): void {
     setOperacaoArmazenado(op);
-    console.log(operacaoarmazenado);
+    
   }
+
+
+// calcular funçoes
+
+
+function handleCalcular() {
+  const num1 = Number(valores.join(""));
+  const num2 = Number(valores2.join(""));
+
+  let resultado = 0;
+
+  switch (operacaoarmazenado) {
+    case "+":
+      resultado = num1 + num2;
+      break;
+    case "-":
+      resultado = num1 - num2;
+      break;
+    case "*":
+      resultado = num1 * num2;
+      break;
+    case "/":
+      resultado = num1 / num2;
+      break;
+    default:
+      return;
+  }
+  setDisplay(resultado);  // Aqui você vai mostrar o resultado no display
+}
+  
+  
+
+
+// funão para limpar o display 
+function handleLimpar() {
+  setValores([]);
+  setValores2([]);
+  setOperacaoArmazenado(undefined);
+  setDisplay(undefined)
+}
+
 
   return (
     <div
       id="estruturaCalc"
-      className="w-64 h-70 bg-gray-400 rounded flex flex-col justify-center p-2  text-center gap-4"
+      className="w-64  bg-gray-400 rounded flex flex-col justify-center p-2  text-center gap-4"
     >
       <h1>Calculadora</h1>
-      <Display  />
+      <div id="display" className="bg-gray-200 w-60 h-10">
+        <div className="w-full h-full flex justify-center items-center">
+          <h2 className="overflow-hidden ">{valores} {operacaoarmazenado} {valores2} {display}</h2>
+        </div>
+      </div>
       <ButaoCalc
        atualizarValor1={handleClick} 
        atualizarValor2={handleOperacao}
+       calcular = {handleCalcular}
+       limpar={handleLimpar}
       />
     </div>
   );
-}
 
+}
 export default Calculadora;
