@@ -1,7 +1,8 @@
 
 import './App.css'
 
-import Calculadora from './components/calculadora/Calculadora'
+
+import Home from './pages/home/Home'
 
 
 function App() {
@@ -9,8 +10,7 @@ function App() {
 
   return (
     <>
-      
-      <Calculadora/>
+      <Home/>
     </>
   )
 }
