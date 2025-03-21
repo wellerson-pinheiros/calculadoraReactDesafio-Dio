@@ -22,7 +22,11 @@ function Calculadora () {
 
   // função que cria um novo array com o numeros antigos persistidos no array que vamos receber do filho
   function handleClick(num: number): void {
-    if(operacaoarmazenado === undefined)
+    if (display !== undefined) {
+      // Se o display contém o resultado, reseta o display e começa a digitar números novamente
+      setDisplay(undefined); // Ou setDisplay(0) se preferir que apareça 0
+      setValores([num]); // Começa a armazenar o primeiro número digitado
+    } else if(operacaoarmazenado === undefined)
     setValores([...valores, num]);
    else if (operacaoarmazenado != undefined) {
     setValores2([...valores2,num])
@@ -64,7 +68,17 @@ function handleCalcular() {
     default:
       return;
   }
+
+
+  
+    
   setDisplay(resultado);  // Aqui você vai mostrar o resultado no display
+
+  setValores([]);
+  setValores2([]);
+  setOperacaoArmazenado(undefined);
+
+  
 }
   
   
@@ -82,7 +96,7 @@ function handleLimpar() {
   return (
     <div
       id="estruturaCalc"
-      className="w-64  bg-gray-400 rounded flex flex-col justify-center p-2  text-center gap-4"
+      className="w-64 min-h-70 bg-gray-400 rounded flex flex-col justify-center p-2  text-center gap-4"
     >
       <h1>Calculadora</h1>
       <div id="display" className="bg-gray-200 w-60 h-10">
