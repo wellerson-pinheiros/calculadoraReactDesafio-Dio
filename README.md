@@ -4,7 +4,7 @@
 
 Este projeto é uma calculadora desenvolvida utilizando React com TypeScript e estilizada com Tailwind CSS.
 
-🚀 Tecnologias Utilizadas
+# 🚀 Tecnologias Utilizadas
 
 React (com Vite)
 
@@ -12,7 +12,7 @@ TypeScript
 
 Tailwind CSS
 
-📦 Instalação
+# 📦 Instalação
 
 Para rodar o projeto localmente, siga os passos abaixo:
 
@@ -35,7 +35,7 @@ Operações básicas: soma, subtração, multiplicação e divisão.
 Interface responsiva com Tailwind CSS.
 
 
-📜 Licença
+ # 📜 Licença
 
 Este projeto está licenciado sob a MIT License.
 
